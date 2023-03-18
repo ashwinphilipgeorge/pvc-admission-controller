@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: pvc-admission-controller-issuer
+  namespace: pvc-admission-controller
+spec:
+  selfSigned: {}
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pvc-admission-controller-certs
+  namespace: pvc-admission-controller
+spec:
+  secretName: pvc-admission-controller-certs
+  dnsNames:
+    - pvc-admission-controller.pvc-admission-controller.svc
+    - pvc-admission-controller.pvc-admission-controller.svc.cluster.local
+  issuerRef:
+    name: pvc-admission-controller-issuer
+  duration: 262800h # 30 years
+  renewBefore: 730h # ~1 months

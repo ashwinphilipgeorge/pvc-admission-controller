@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvc-admission-controller
+  namespace: pvc-admission-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pvc-admission-controller
+  template:
+    metadata:
+      labels:
+        app: pvc-admission-controller
+    spec:
+      containers:
+        - name: pvc-admission-controller
+          image: ashwinphilipgeorge/pvc-admission-controller:latest
+          ports:
+            - containerPort: 443
+              protocol: TCP
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
+      volumes:
+        - name: certs
+          secret:
+            secretName: pvc-admission-controller-certs
