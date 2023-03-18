@@ -15,7 +15,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 Clone this repository to your local machine
 
 ```bash
-git clone https://github.com/your-repo/pvc-admission-controller.git
+git clone https://github.com/ashwinphilipgeorge/pvc-admission-controller.git
 cd pvc-admission-controller
 ```
 
